@@ -37,7 +37,7 @@ module.exports = class PartyRoute extends Route {
         } catch (err) {
           res.status(500).json({ ok: false, error: err.toString() })
         }
-      }
+      } else return res.status(400).json({ ok: false, error: 'Missing query parameters' })
     })
 
     app.use(this.path, router)
