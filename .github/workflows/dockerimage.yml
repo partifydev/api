@@ -14,7 +14,7 @@ jobs:
     - name: docker build
       uses: actions/docker/cli@master
       with:
-        args: build -t spotiparty/api.
+        args: build -t spotiparty/api .
     - name: docker login
       uses: actions/docker/login@master
       env:
