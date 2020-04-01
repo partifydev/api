@@ -11,12 +11,14 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
-  deployment:
-    production:
-      branch: master
-        commands:
-          - git remote add production dokku@$DOKKU_SERVER_ADDRESS:api
-          - git push production master
+  deploy:
+    docker:
+      - image: alpine/git
+    steps:
+      - checkout
+      - run: git remote add dokku dokku@$DOKKU_SERVER_ADDRESS:api
+      - run: ssh-keyscan -H $DOKKU_SERVER_ADDRESS >> ~/.ssh/known_hosts
+      - run: git push -q -f dokku $CIRCLE_BRANCH:master
 workflows:
     build-and-test:
       jobs:
