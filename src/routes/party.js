@@ -1,26 +1,17 @@
 const { Router } = require('express')
 const { Route } = require('..')
-const os = require('os')
 const randomize = require('randomatic')
 
-module.exports = class MainRoute extends Route {
+module.exports = class PartyRoute extends Route {
   constructor (client) {
     super(client)
-    this.name = ''
+    this.name = 'party'
   }
 
   register (app) {
     const router = Router()
 
-    router.get('/', (req, res) => {
-      res.redirect(process.env.FRONTEND_URL)
-    })
-
-    router.get('/test', (req, res) => {
-      res.status(200).json({ ok: true, hostname: os.hostname() })
-    })
-
-    router.get('/create-party', async (req, res) => {
+    router.get('/create', async (req, res) => {
       if (req.query.name && req.query.password && req.query.userId) {
         // name: req.query.name
         // password: req.query.password
