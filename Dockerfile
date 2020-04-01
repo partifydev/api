@@ -1,4 +1,4 @@
-FROM node:12.13-alpine3.9
+FROM node:lts-alpine
 
 ENV NODE_ENV production
 WORKDIR /usr/src/spotiparty-api/app
