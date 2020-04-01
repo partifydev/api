@@ -11,7 +11,11 @@ module.exports = class Server {
   }
 
   start () {
-    const port = process.env.PORT || 8080
+    const port = process.env.PORT
+    if (!port) {
+      console.error('Environment variable "PORT" wasn\'t defined.')
+      process.exit(1)
+    }
 
     this.app = express()
 
