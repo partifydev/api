@@ -1,13 +1,12 @@
 FROM node:lts-alpine
 
-WORKDIR /github/workspace
+WORKDIR /usr/src/app
 
-COPY Dockerfile ./
-COPY package*.json ./
+COPY package*.json /usr/src/app
 
-RUN npm ci --only=production
+RUN cd /usr/src/app && npm ci --only=production
 
 COPY . .
 
 EXPOSE 80
-CMD [ "node", "server.js" ]
+CMD [ "node", "index.js" ]
