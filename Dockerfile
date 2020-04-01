@@ -1,7 +1,8 @@
 FROM node:lts-alpine
 
-WORKDIR /opt/back
+WORKDIR /github/workspace
 
+COPY Dockerfile ./
 COPY package*.json ./
 
 RUN npm ci --only=production
