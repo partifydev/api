@@ -11,13 +11,13 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  deployment:
+    production:
+      branch: master
+        commands:
+          - git remote add production dokku@$DOKKU_SERVER_ADDRESS:api
+          - git push production master
 workflows:
     build-and-test:
       jobs:
         - build-and-test
-deployment:
-  production:
-    branch: master
-      commands:
-        - git remote add production dokku@$DOKKU_SERVER_ADDRESS:api
-        - git push production master
