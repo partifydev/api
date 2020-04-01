@@ -1,11 +1,12 @@
-FROM node:lts-alpine
+FROM node:lts-alpine
 
-ENV NODE_ENV production
-WORKDIR /usr/src/spotiparty-api/app
-COPY ["package.json", "package-lock.json", "./"]
+WORKDIR /usr/src/app
 
-RUN npm install --production && mv node_modules ../
-COPY . .
+COPY package*.json ./
 
-EXPOSE 80
-CMD npm start
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 80
+CMD [ "node", "server.js" ]
