@@ -11,11 +11,11 @@ module.exports = class PartyRoute extends Route {
   register (app) {
     const router = Router()
 
-    router.get('/create', async (req, res) => {
-      if (req.query.name && req.query.password && req.query.userId) {
-        // name: req.query.name
-        // password: req.query.password
-        // owner: req.query.userId
+    router.post('/create', async (req, res) => {
+      if (req.body.name && req.body.password && req.body.userId) {
+        // name: req.body.name
+        // password: req.body.password
+        // owner: req.body.userId
         // id: random 6 digit number
         // active: true
 
