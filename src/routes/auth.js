@@ -16,11 +16,11 @@ module.exports = class AuthRoute extends Route {
     router.get('/callback', (req, res) => {
       if (req.body.error) res.status(500).json({ ok: false, error: req.body.error })
 
-      if (req.params.code) {
+      if (req.query.code) {
         const params = new URLSearchParams()
 
         params.append('grant_type', 'authorization_code')
-        params.append('code', req.params.code)
+        params.append('code', req.query.code)
         params.append('redirect_uri', `${process.env.APP_REDIRECT_URL}`)
 
         fetch('https://accounts.spotify.com/api/token', {
@@ -40,11 +40,11 @@ module.exports = class AuthRoute extends Route {
     router.get('/refresh', (req, res) => {
       if (req.body.error) res.status(500).json({ ok: false, error: req.body.error })
 
-      if (req.params.refresh_token) {
+      if (req.query.refresh_token) {
         const params = new URLSearchParams()
 
         params.append('grant_type', 'refresh_token')
-        params.append('refresh_token', req.params.refresh_token)
+        params.append('refresh_token', req.query.refresh_token)
 
         fetch('https://accounts.spotify.com/api/token', {
           method: 'POST',
