@@ -1,1 +1,1 @@
-# api
+# spotiparty/api
