@@ -1,1 +1,1 @@
-# spotiparty/api
+# partifydev/api
